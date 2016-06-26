@@ -8,7 +8,7 @@ const path = require('path');
 const appRoot = process.cwd(); // Current working directory
 const dockerAppRoot = '/var/www/html/dev-app';
 const format = require('../lib/format');
-const gulpPath = path.resolve(__dirname, '../node_modules/gulp/bin/gulp.js');
+const chokidar = require('chokidar');
 
 program
 	.version('0.0.2')
@@ -30,19 +30,39 @@ program
 		});
 	});
 
+// Watch file changes in the host 
+// And restart server in the docker container
+// container_id is docker container id
+
 program
 	.command('watch <container_id>')
 	.usage('')
 	.action(function(container_id){
-		var cmd = gulpPath + ' --container ' + container_id;
-		exec(cmd, function(error, stdout, stderr){
-			if(error){
+		var defaults = ['./', '!public', '!dist','!node_modules', '!.tmp'];
+
+		console.log(format.info("Watching file changes in following paths " + defaults.join(',')));
+		
+		// One-liner for current directory, ignores .dotfiles 
+		chokidar.watch(defaults, {
+			ignored: '/node_modules',
+			persistent: true,
+			cwd: appRoot,
+			ignoreInitial: true,
+		})
+		.on('all', function(event, path){
+		  console.log(path + ' ' + event);
+	  	  console.log('Restarting application on container %s', container_id);
+
+	  // Child process to restart the server
+	  // id is container id
+	  exec('docker exec -i ' + container_id + ' /root/start_node restart' , function(err, stdout, stderr){
+			if(err){
 				console.log(format.error(stderr));
 			}
-			console.log('Watching files ...');
+			console.log(format.info('Server restarted!'));
 			console.log(stdout);
+	   		});
 		});
-
 	});
 
 program.parse(process.argv);
