@@ -11,7 +11,7 @@ const format = require('../lib/format');
 const chokidar = require('chokidar');
 
 program
-	.version('0.0.2')
+	.version('0.0.4')
 	.option('-v, --volume <volume>', 'application root directory to be mounted on docker i.e. /opt/apps/hello-world')
 	.option('-p, --port <port>', "port to be opened i.e. 80:80 1337:1337")
 	.option('-n, --name <name>', "container name")
