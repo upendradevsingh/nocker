@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Node command line to run a docker container",
   "main": "./bin/index.js",
-  "bin":{
+  "bin": {
     "nockr": "./bin/index.js"
   },
   "scripts": {
@@ -17,7 +17,10 @@
   "author": "Upendra Dev Singh <upendradevsingh@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.9.0"
+    "chokidar": "^1.6.0",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "gulp": "^3.9.1"
   },
- "repository": "https://github.com/upendradevsingh/nocker.git"
+  "repository": "https://github.com/upendradevsingh/nocker.git"
 }

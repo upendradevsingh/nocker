@@ -21,3 +21,8 @@ $ nockr -v /opt/projects/dev-app -p 8888 -n my_test_container -i upendradevsingh
 
 $ nockr -p 8888 -n my_test_container -i upendradevsingh/noresadegn:2.0 .
 
+## Watch change in applications
+
+$ nockr watch <container_id>
+
+This command will run the gulp internally to watch the file changes and restart the server in the given docker container.
