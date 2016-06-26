@@ -1,0 +1,22 @@
+{
+  "name": "nocker",
+  "version": "0.0.1",
+  "description": "Node command line to run a docker container",
+  "main": "./bin/index.js",
+  "bin":{
+    "nocker": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "node",
+    "cli",
+    "nodedocker_cli"
+  ],
+  "author": "Upendra Dev Singh",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
