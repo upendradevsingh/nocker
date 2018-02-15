@@ -21,7 +21,7 @@ program
 		var envVar = program.env;
 		var port = program.port +':'+program.port;
 		var vol = program.volume === undefined ? appRoot + ':' +dockerAppRoot : program.volume.indexOf(':') !== -1 ? program.volume : program.volume + ':' + dockerAppRoot;
-		var cmd = 'docker run -d -p 80:80 -p 6379:6379 -p ' + port + '-e ' + envVar + ' -v ' + vol + ' --name ' + program.name + ' -i ' +  program.image + ' /bin/bash -c "redis-server --daemonize yes; /root/start_node start; /usr/bin/supervisord"';
+		var cmd = 'docker run -d -p 80:80 -p 6379:6379 -p ' + port + ' -e ' + envVar + ' -v ' + vol + ' --name ' + program.name + ' -i ' +  program.image + ' /bin/bash -c "redis-server --daemonize yes; /root/start_node start; /usr/bin/supervisord"';
 		console.log("Running %s", cmd);
 		exec(cmd, function(error, stdout, stderr){
 
