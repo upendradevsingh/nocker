@@ -1,6 +1,6 @@
 {
   "name": "nockr",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Node command line to run a docker container",
   "main": "./bin/index.js",
   "bin": {
